@@ -1,8 +1,8 @@
-package alex.dev.common.ui.components.buttons
+package alex.dev.contourteacherapp.presentation.ui.componets.buttons
 
 import alex.dev.common.ui.theme.AppBlack
-import alex.dev.common.ui.theme.AppShape
-import alex.dev.common.ui.theme.AppTypography
+import alex.dev.contourteacherapp.presentation.ui.theme.AppShape
+import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
 import alex.dev.common.ui.theme.AppWhite
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button

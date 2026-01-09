@@ -1,8 +1,8 @@
-package alex.dev.contour.teacher.navigation
+package alex.dev.contourteacherapp.presentation.navigation
 
 import alex.dev.contourteacherapp.presentation.feature.auth.sign_in_screen.SignInScreen
-import alex.dev.contour.teacher.ui.screens.auth.sign_up_screen.SignUpScreen
-import alex.dev.contour.teacher.ui.screens.complete_profile_screen.CompleteProfileScreen
+import alex.dev.contourteacherapp.presentation.feature.check_role.CheckRoleScreen
+//import alex.dev.contourteacherapp.presentation.feature.auth.sign_up_screen.SignUpScreen
 import alex.dev.contourteacherapp.presentation.feature.intro.IntroScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -18,36 +18,42 @@ fun TeacherMainNavigationGraph(startDestination: TeacherScreens = TeacherScreens
     ) {
         composable<TeacherScreens.IntroScreen> {
             IntroScreen(
-                onNavigateToSignUp = {
-                    navController.navigate(TeacherScreens.SignUpScreen)
+                onNavigateToCheckRoleScreen = {
+                    navController.navigate(TeacherScreens.CheckRoleScreen)
                 },
                 onNavigateToSignIn = {
                     navController.navigate(TeacherScreens.SignInScreen)
                 }
             )
         }
-        composable<TeacherScreens.SignUpScreen> {
-            SignUpScreen(
-                onRegisterComplete = {
-                    navController.navigate(TeacherScreens.CompleteProfileScreen) {
-                        popUpTo(0) { inclusive = true }
-                    }
+        composable<TeacherScreens.CheckRoleScreen> {
+            CheckRoleScreen(
+                onVerificationComplete = {
+                    navController.navigate(TeacherScreens.SignUpScreen)
                 },
-                onNavigateToSignIn = {
-                    navController.navigate(TeacherScreens.SignInScreen)
-                },
-            )
+                )
         }
-        composable<TeacherScreens.CompleteProfileScreen> {
-            CompleteProfileScreen(
-                onRegisterFull = {
-                    navController.navigate(TeacherScreens.HomeGraph) {
-                        popUpTo(0) { inclusive = true }
-                    }
-                },
-            )
-        }
-
+//        composable<TeacherScreens.SignUpScreen> {
+//            SignUpScreen(
+//                onRegisterComplete = {
+//                    navController.navigate(TeacherScreens.CompleteProfileScreen) {
+//                        popUpTo(0) { inclusive = true }
+//                    }
+//                },
+//                onNavigateToSignIn = {
+//                    navController.navigate(TeacherScreens.SignInScreen)
+//                },
+//            )
+//        }
+//        composable<TeacherScreens.CompleteProfileScreen> {
+//            TeacherScreens.CompleteProfileScreen(
+//                onRegisterFull = {
+//                    navController.navigate(TeacherScreens.HomeGraph) {
+//                        popUpTo(0) { inclusive = true }
+//                    }
+//                },
+//            )
+//        }
         composable<TeacherScreens.SignInScreen> {
             SignInScreen(
                 onLoginComplete = {

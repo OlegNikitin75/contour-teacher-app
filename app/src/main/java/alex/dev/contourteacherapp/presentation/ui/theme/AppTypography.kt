@@ -1,6 +1,6 @@
-package alex.dev.common.ui.theme
+package alex.dev.contourteacherapp.presentation.ui.theme
 
-import alex.dev.common.R
+import alex.dev.contourteacherapp.R
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

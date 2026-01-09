@@ -1,20 +1,19 @@
-package alex.dev.common.ui.components.text_fields
+package alex.dev.contourteacherapp.presentation.ui.componets.text_fields
 
 import alex.dev.common.ui.theme.AppBlack
 import alex.dev.common.ui.theme.AppError
 import alex.dev.common.ui.theme.AppGray
 import alex.dev.common.ui.theme.AppLightGray
-import alex.dev.common.ui.theme.AppShape
-import alex.dev.common.ui.theme.AppSize
+import alex.dev.contourteacherapp.presentation.ui.theme.AppShape
+import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.common.ui.theme.AppSuccess
-import alex.dev.common.ui.theme.AppTypography
+import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -33,22 +32,20 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AppTextField(
     modifier: Modifier = Modifier,
-    label: String,
+    title: String? = null,
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String? = null,
     enabled: Boolean = true,
     error: Boolean = false,
     isSuccess: Boolean = false,
-    expanded: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    maxLines: Int = if (expanded) Int.MAX_VALUE else 1,
-    minLines: Int = if (expanded) 2 else 1,
     textStyle: TextStyle = AppTypography.L1,
     trailingIcon: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
+
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
@@ -63,11 +60,10 @@ fun AppTextField(
     )
 
     Column() {
-        Text(text = label, style = AppTypography.L1, color = AppBlack)
-        Spacer(modifier=Modifier.height(AppSize.SIZE_SMALL))
+        title?.let { Text(text = title, style = AppTypography.L1, color = AppBlack) }
+        Spacer(modifier = Modifier.height(AppSize.SIZE_SMALL))
         TextField(
             modifier = modifier
-                .fillMaxWidth()
                 .border(
                     width = 1.dp,
                     color = borderColor,
@@ -81,8 +77,6 @@ fun AppTextField(
                 { Text(text = it, style = AppTypography.L1) }
             },
             singleLine = true,
-            maxLines = maxLines,
-            minLines = minLines,
             shape = AppShape.SHAPE_SMALL,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,

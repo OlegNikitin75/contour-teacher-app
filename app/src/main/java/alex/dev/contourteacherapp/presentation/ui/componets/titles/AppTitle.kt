@@ -1,46 +1,41 @@
-package alex.dev.common.ui.components.titles
+package alex.dev.contourteacherapp.presentation.ui.componets.titles
 
 import alex.dev.common.ui.theme.AccentTeacher
 import alex.dev.common.ui.theme.AppBlack
-import alex.dev.common.ui.theme.AppTypography
-import alex.dev.common.ui.theme.Resources
+import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
+import alex.dev.contourteacherapp.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 
 @Composable
 fun AppTitle(
     modifier: Modifier = Modifier,
-    appTitle: Int = Resources.Strings.AppTitle,
-    appSubTitle: String,
     textStyle: TextStyle = AppTypography.H1,
-    baseColor: Color = AppBlack,
-    accentColor: Color = AccentTeacher
 ) {
     Row(
-        modifier=Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
-            text = stringResource(appTitle),
+            text = stringResource(R.string.app_title),
             style = textStyle,
-            color = baseColor
+            color = AppBlack
         )
         Text(
             text = "|",
             style = textStyle,
-            color = baseColor
+            color = AppBlack
         )
         Text(
-            text = appSubTitle,
+            text = stringResource(R.string.app_subtitle),
             style = textStyle,
-            color = accentColor
+            color = AccentTeacher
         )
     }
 }

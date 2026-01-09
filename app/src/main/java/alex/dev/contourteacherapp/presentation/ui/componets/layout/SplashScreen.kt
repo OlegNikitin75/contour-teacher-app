@@ -1,10 +1,12 @@
 package alex.dev.contourteacherapp.presentation.ui.componets.layout
 
-import alex.dev.common.ui.components.titles.AppTitle
 import alex.dev.common.ui.theme.AccentTeacher
 import alex.dev.common.ui.theme.AppGray
 import alex.dev.common.ui.theme.AppLightGray
-import alex.dev.common.ui.theme.AppSize
+import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
+import alex.dev.contourteacherapp.R
+import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
+import alex.dev.contourteacherapp.util.getImageSize
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -27,19 +29,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
     navigateToIntroScreen: () -> Unit,
-    image: Painter,
-    contentDescription: String,
-    subTitle: String,
-    accentColor: Color = AccentTeacher
 ) {
+    val configuration = LocalConfiguration.current
     val scale = remember { Animatable(0.7f) }
     val alpha = remember { Animatable(0f) }
 
@@ -75,15 +75,12 @@ fun SplashScreen(
             ) {
                 Image(
                     modifier = Modifier
-                        .size(240.dp)
+                        .size(size = getImageSize(configuration))
                         .padding(bottom = AppSize.SIZE_MEDIUM),
-                    painter = image,
-                    contentDescription = contentDescription,
+                    painter = painterResource(R.drawable.teacher_icon_splash),
+                    contentDescription = stringResource(R.string.teacher_image_d),
                 )
-                AppTitle(
-                    appSubTitle = subTitle,
-                    accentColor = accentColor
-                )
+                AppTitle()
             }
 
             Column(

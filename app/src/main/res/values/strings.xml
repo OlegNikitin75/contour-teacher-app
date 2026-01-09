@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">ContourTeacherApp</string>
+    <string name="app_name">контур | препод</string>
+
+    <!--Titles-->
+    <string name="app_title">контур</string>
+    <string name="app_subtitle">препод</string>
+
+    <!--    Screen titles-->
+    <string name="intro_t">платформа для управления учебным процессом</string>
+    <string name="check_role_t">проверим доступ\nк приложению преподавателя</string>
+
+    <!--    Button labels-->
+    <string name="signup_b">зарегистрироваться</string>
+    <string name="signin_b">войти</string>
+    <string name="check_code_b">проверить код</string>
+
+    <!--    Screen strings-->
+    <string name="intro_s">уже есть аккаунт?</string>
+    <string name="check_role_bottom_s">код не пришёл? обратитесь к админу</string>
+    <string name="check_role_top_s">админ кафедры выдал вам уникальный код для доступа</string>
+
+    <!--    Image, icon descriptions-->
+    <string name="teacher_image_d">юмористический рисунок преподавателя</string>
+
+    <!--    Text field placeholders-->
+
+
 </resources>

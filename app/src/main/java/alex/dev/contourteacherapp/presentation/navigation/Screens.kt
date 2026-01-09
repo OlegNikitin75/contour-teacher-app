@@ -1,4 +1,4 @@
-package alex.dev.contour.teacher.navigation
+package alex.dev.contourteacherapp.presentation.navigation
 
 import kotlinx.serialization.Serializable
 
@@ -6,6 +6,9 @@ import kotlinx.serialization.Serializable
 sealed class TeacherScreens {
     @Serializable
     data object IntroScreen : TeacherScreens()
+
+    @Serializable
+    data object CheckRoleScreen : TeacherScreens()
 
     @Serializable
     data object SignInScreen : TeacherScreens()

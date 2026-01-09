@@ -1,15 +1,14 @@
 package alex.dev.contourteacherapp.presentation.feature.intro
 
-import alex.dev.common.ui.components.buttons.PrimaryButton
-import alex.dev.common.ui.components.titles.AppTitle
+import alex.dev.contourteacherapp.presentation.ui.componets.buttons.PrimaryButton
 import alex.dev.common.ui.theme.AppBlack
 import alex.dev.common.ui.theme.AppGray
 import alex.dev.common.ui.theme.AppLightGray
-import alex.dev.common.ui.theme.AppSize
-import alex.dev.common.ui.theme.AppTypography
+import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.common.ui.theme.AppWhite
-import alex.dev.common.ui.theme.Resources
-import alex.dev.contour.teacher.R
+import alex.dev.contourteacherapp.R
+import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
+import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,17 +36,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
 fun IntroScreen(
-    onNavigateToSignUp: () -> Unit,
+    onNavigateToCheckRoleScreen: () -> Unit,
     onNavigateToSignIn: () -> Unit
 ) {
-//    val configuration = LocalConfiguration.current
-//    val screenWidth = configuration.screenWidthDp.dp
-//    val imageSize = when {
-//        screenWidth < 360.dp -> 160.dp
-//        screenWidth < 420.dp -> 240.dp
-//        else -> 220.dp
-//    }
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = AppLightGray,
@@ -65,7 +56,6 @@ fun IntroScreen(
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     },
-                appSubTitle = stringResource(R.string.app_sub_title),
                 textStyle = AppTypography.H3,
             )
             Surface(
@@ -95,7 +85,7 @@ fun IntroScreen(
                     verticalArrangement = Arrangement.spacedBy(AppSize.SIZE_MEDIUM)
                 ) {
                     Text(
-                        text = stringResource(R.string.subtitle_intro),
+                        text = stringResource(R.string.intro_t),
                         style = AppTypography.H2,
                         color = AppBlack,
                         textAlign = TextAlign.Center
@@ -104,40 +94,40 @@ fun IntroScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(AppSize.SIZE_EXTRA_LARGE),
-                        onClick = onNavigateToSignUp,
-                        label = stringResource(Resources.LabelsOnButtons.SignUp),
+                        onClick = onNavigateToCheckRoleScreen,
+                        label = stringResource(R.string.signup_b),
                         containerColor = AppBlack,
                         contentColor = AppWhite
                     )
                     Row {
                         Text(
                             modifier = Modifier.clickable { onNavigateToSignIn() },
-                            text = stringResource(Resources.Strings.HaveAnAccount),
+                            text = stringResource(R.string.intro_s),
                             color = AppGray,
                             style = AppTypography.L1
                         )
                         Spacer(modifier = Modifier.width(AppSize.SIZE_SMALL))
                         Text(
                             modifier = Modifier.clickable { onNavigateToSignIn() },
-                            text = stringResource(Resources.LabelsOnButtons.SignIn),
+                            text = stringResource(R.string.signin_b),
                             color = AppBlack,
                             style = AppTypography.L1,
                             textDecoration = TextDecoration.Underline
-
                         )
                     }
                 }
             }
             Image(
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .constrainAs(imageRef) {
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                         bottom.linkTo(surfaceRef.top)
                     },
                 painter = painterResource(R.drawable.teacher_image),
-                contentDescription = stringResource(R.string.icon_teacher),
+                contentDescription = stringResource(R.string.teacher_image_d),
             )
         }
     }

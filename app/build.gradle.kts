@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+
 }
 
 android {
@@ -73,6 +74,8 @@ android {
 dependencies {
     // 1. BOM в правильном порядке
     implementation(platform(libs.supabase.bom))
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.foundation)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
 
@@ -93,6 +96,7 @@ dependencies {
     // 5. Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+    ksp(libs.kotlin.metadata.jvm)
     implementation(libs.androidx.hilt.navigation.compose)
 
     // 6. Navigation
