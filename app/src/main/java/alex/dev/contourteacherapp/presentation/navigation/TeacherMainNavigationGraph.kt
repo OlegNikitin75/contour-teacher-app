@@ -1,7 +1,7 @@
 package alex.dev.contourteacherapp.presentation.navigation
 
+import alex.dev.contourteacherapp.presentation.feature.activation.ActivationScreen
 import alex.dev.contourteacherapp.presentation.feature.auth.sign_in_screen.SignInScreen
-import alex.dev.contourteacherapp.presentation.feature.check_role.CheckRoleScreen
 //import alex.dev.contourteacherapp.presentation.feature.auth.sign_up_screen.SignUpScreen
 import alex.dev.contourteacherapp.presentation.feature.intro.IntroScreen
 import androidx.compose.runtime.Composable
@@ -19,19 +19,23 @@ fun TeacherMainNavigationGraph(startDestination: TeacherScreens = TeacherScreens
         composable<TeacherScreens.IntroScreen> {
             IntroScreen(
                 onNavigateToCheckRoleScreen = {
-                    navController.navigate(TeacherScreens.CheckRoleScreen)
+                    navController.navigate(TeacherScreens.ActivationScreen)
                 },
                 onNavigateToSignIn = {
                     navController.navigate(TeacherScreens.SignInScreen)
                 }
             )
         }
-        composable<TeacherScreens.CheckRoleScreen> {
-            CheckRoleScreen(
+        composable<TeacherScreens.ActivationScreen> {
+            ActivationScreen(
                 onVerificationComplete = {
-                    navController.navigate(TeacherScreens.SignUpScreen)
+                    navController.navigate(TeacherScreens.SignUpScreen) {
+                        popUpTo<TeacherScreens.ActivationScreen> {
+                            inclusive = true
+                        }
+                    }
                 },
-                )
+            )
         }
 //        composable<TeacherScreens.SignUpScreen> {
 //            SignUpScreen(

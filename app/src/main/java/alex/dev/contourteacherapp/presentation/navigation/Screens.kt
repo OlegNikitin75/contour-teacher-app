@@ -8,7 +8,7 @@ sealed class TeacherScreens {
     data object IntroScreen : TeacherScreens()
 
     @Serializable
-    data object CheckRoleScreen : TeacherScreens()
+    data object ActivationScreen : TeacherScreens()
 
     @Serializable
     data object SignInScreen : TeacherScreens()

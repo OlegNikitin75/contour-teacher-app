@@ -1,11 +1,11 @@
-package alex.dev.contourteacherapp.presentation.feature.check_role
+package alex.dev.contourteacherapp.presentation.feature.activation
 
 import alex.dev.common.ui.theme.AppBlack
 import alex.dev.common.ui.theme.AppGray
 import alex.dev.common.ui.theme.AppLightGray
 import alex.dev.common.ui.theme.AppWhite
 import alex.dev.contourteacherapp.R
-import alex.dev.contourteacherapp.presentation.ui.componets.layout.OtpInputField
+import alex.dev.contourteacherapp.presentation.ui.componets.layout.InviteCodeInputField
 import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
@@ -22,16 +22,34 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import kotlinx.coroutines.delay
 
 @Composable
-fun CheckRoleScreen(
+fun ActivationScreen(
+    viewModel: ActivationViewModel = hiltViewModel(),
     onVerificationComplete: () -> Unit,
 ) {
+    val state by viewModel.state.collectAsState()
+    var enteredCode by remember { mutableStateOf("") }
+
+    LaunchedEffect(state) {
+        if (state is ActivationState.Success) {
+            delay(500)
+            onVerificationComplete()
+        }
+    }
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -86,10 +104,22 @@ fun CheckRoleScreen(
                         textAlign = TextAlign.Center,
                         style = AppTypography.L1
                     )
-                    OtpInputField(
-                        modifier = Modifier.padding(vertical = AppSize.SIZE_MEDIUM),
+                    InviteCodeInputField(
                         numberOfCharacters = 5,
-                        verifyCode = { TODO() }
+                        isError = state is ActivationState.Error,
+                        isLoading = state is ActivationState.Loading,
+                        errorMessage = if (state is ActivationState.Error && enteredCode.length == 5)
+                            (state as? ActivationState.Error)?.message else null,
+                        successMessage = if (state is ActivationState.Success) "Успех!" else null,
+                        onVerifyCode = { code ->
+                            viewModel.verifyCode(code)
+                        },
+                        onCodeChange = { newCode ->
+                            enteredCode = newCode
+                            if (state is ActivationState.Error || state is ActivationState.Success) {
+                                viewModel.resetState()
+                            }
+                        }
                     )
                 }
             }
