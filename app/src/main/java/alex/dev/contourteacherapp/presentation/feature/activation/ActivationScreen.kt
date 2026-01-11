@@ -110,7 +110,7 @@ fun ActivationScreen(
                         isLoading = state is ActivationState.Loading,
                         errorMessage = if (state is ActivationState.Error && enteredCode.length == 5)
                             (state as? ActivationState.Error)?.message else null,
-                        successMessage = if (state is ActivationState.Success) "Успех!" else null,
+                        successMessage = if (state is ActivationState.Success) stringResource(R.string.invite_code_success_m) else null,
                         onVerifyCode = { code ->
                             viewModel.verifyCode(code)
                         },

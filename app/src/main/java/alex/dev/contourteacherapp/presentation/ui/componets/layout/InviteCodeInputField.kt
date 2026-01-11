@@ -9,6 +9,7 @@ import alex.dev.contourteacherapp.presentation.ui.componets.buttons.PrimaryButto
 import alex.dev.contourteacherapp.presentation.ui.theme.AppShape
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,7 +21,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -95,13 +95,16 @@ fun InviteCodeInputField(
             decorator = {
                 val otpCode = code.text.toString()
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = AppSize.SIZE_NORMAL),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = AppSize.SIZE_NORMAL),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     repeat(numberOfCharacters) { index ->
                         Cell(
                             char = otpCode.getOrElse(index) { ' ' },
-                            highlight = index == code.text.length
+                            highlight = index == code.text.length,
+                            error = isError
                         )
                     }
                 }
@@ -122,6 +125,7 @@ fun InviteCodeInputField(
                         textAlign = TextAlign.Center
                     )
                 }
+
                 !successMessage.isNullOrBlank() -> {
                     Text(
                         text = successMessage,
@@ -131,7 +135,7 @@ fun InviteCodeInputField(
                     )
                 }
 
-                else->{}
+                else -> {}
             }
         }
         Spacer(modifier = Modifier.height(AppSize.SIZE_MEDIUM))
@@ -150,10 +154,17 @@ fun InviteCodeInputField(
 @Composable
 private fun Cell(
     char: Char,
-    highlight: Boolean
+    highlight: Boolean,
+    error:Boolean
 ) {
     val borderSize by animateDpAsState(
-        targetValue = if (highlight) 2.dp else 0.dp
+        targetValue = when {
+            error || highlight -> 2.dp
+            else -> 0.dp
+        }
+    )
+    val borderColor by animateColorAsState(
+        targetValue = if (error) AppError else AppGray
     )
 
     Box(
@@ -163,7 +174,7 @@ private fun Cell(
             .height(AppSize.SIZE_EXTRA_EXTRA_LARGE)
             .clip(shape = AppShape.SHAPE_EXTRA_LARGE)
             .background(AppLightGray)
-            .border(borderSize, AppGray, AppShape.SHAPE_EXTRA_LARGE),
+            .border(borderSize, borderColor, AppShape.SHAPE_EXTRA_LARGE),
         contentAlignment = Alignment.Center
     ) {
         Text(

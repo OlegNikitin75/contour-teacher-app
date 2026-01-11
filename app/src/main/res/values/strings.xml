@@ -19,8 +19,13 @@
     <string name="check_role_bottom_s">код не пришёл? обратитесь к админу</string>
     <string name="check_role_top_s">админ кафедры выдал вам уникальный код для доступа</string>
 
+    <!--    Message strings-->
+    <string name="invite_code_success_m">уже есть аккаунт?</string>
+
+
     <!--    Image, icon descriptions-->
     <string name="teacher_image_d">юмористический рисунок преподавателя</string>
+    <string name="qq">Код подтверждён. Приятного использования!</string>
 
     <!--    Text field placeholders-->
 
