@@ -4,12 +4,13 @@ import alex.dev.common.ui.theme.AppBlack
 import alex.dev.common.ui.theme.AppError
 import alex.dev.common.ui.theme.AppGray
 import alex.dev.common.ui.theme.AppLightGray
+import alex.dev.common.ui.theme.AppSuccess
 import alex.dev.contourteacherapp.presentation.ui.theme.AppShape
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
-import alex.dev.common.ui.theme.AppSuccess
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -25,7 +27,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
@@ -35,17 +39,17 @@ fun AppTextField(
     title: String? = null,
     value: String,
     onValueChange: (String) -> Unit,
+    onVisibilityChange: (() -> Unit)? = null,
     placeholder: String? = null,
     enabled: Boolean = true,
     error: Boolean = false,
     isSuccess: Boolean = false,
+    showPassword: Boolean? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
+    visualTransformation: Boolean?=null,
     textStyle: TextStyle = AppTypography.L1,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    leadingIcon: @Composable (() -> Unit)? = null,
-
+    trailingIconId: Int? = null,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
@@ -59,7 +63,7 @@ fun AppTextField(
         }
     )
 
-    Column() {
+    Column(modifier = modifier) {
         title?.let { Text(text = title, style = AppTypography.L1, color = AppBlack) }
         Spacer(modifier = Modifier.height(AppSize.SIZE_SMALL))
         TextField(
@@ -80,10 +84,22 @@ fun AppTextField(
             shape = AppShape.SHAPE_SMALL,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
-            visualTransformation = visualTransformation,
+            visualTransformation = if (visualTransformation == true && !showPassword!!) {
+                PasswordVisualTransformation()
+            } else {
+                VisualTransformation.None
+            },
+
             textStyle = textStyle,
-            trailingIcon = trailingIcon,
-            leadingIcon = leadingIcon,
+            trailingIcon = {
+                if (trailingIconId != null) {
+                    Icon(
+                        modifier = Modifier.clickable { if (onVisibilityChange != null) onVisibilityChange() },
+                        painter = painterResource(id = trailingIconId),
+                        contentDescription = null
+                    )
+                }
+            },
             colors = TextFieldDefaults.colors(
                 unfocusedContainerColor = AppLightGray,
                 focusedContainerColor = AppLightGray,

@@ -102,7 +102,7 @@ fun IntroScreen(
                     Row {
                         Text(
                             modifier = Modifier.clickable { onNavigateToSignIn() },
-                            text = stringResource(R.string.intro_s),
+                            text = stringResource(R.string.intro_auth_s),
                             color = AppGray,
                             style = AppTypography.L1
                         )

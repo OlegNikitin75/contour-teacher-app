@@ -155,7 +155,7 @@ fun InviteCodeInputField(
 private fun Cell(
     char: Char,
     highlight: Boolean,
-    error:Boolean
+    error: Boolean
 ) {
     val borderSize by animateDpAsState(
         targetValue = when {
@@ -164,7 +164,10 @@ private fun Cell(
         }
     )
     val borderColor by animateColorAsState(
-        targetValue = if (error) AppError else AppGray
+        targetValue = when {
+            error -> AppError
+            else -> AppGray
+        }
     )
 
     Box(
