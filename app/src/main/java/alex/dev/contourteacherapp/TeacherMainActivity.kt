@@ -1,6 +1,6 @@
 package alex.dev.contourteacherapp
 
-import alex.dev.common.ui.theme.AppWhite
+import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
 import alex.dev.contourteacherapp.presentation.navigation.TeacherMainNavigationGraph
 import alex.dev.contourteacherapp.ui.theme.ContourTeacherAppTheme
 import android.os.Bundle

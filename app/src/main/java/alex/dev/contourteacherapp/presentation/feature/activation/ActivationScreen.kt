@@ -1,9 +1,9 @@
 package alex.dev.contourteacherapp.presentation.feature.activation
 
-import alex.dev.common.ui.theme.AppBlack
-import alex.dev.common.ui.theme.AppGray
-import alex.dev.common.ui.theme.AppLightGray
-import alex.dev.common.ui.theme.AppWhite
+import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
+import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
 import alex.dev.contourteacherapp.R
 import alex.dev.contourteacherapp.presentation.ui.componets.layout.InviteCodeInputField
 import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle

@@ -1,8 +1,8 @@
 package alex.dev.contourteacherapp.presentation.ui.componets.layout
 
-import alex.dev.common.ui.theme.AccentTeacher
-import alex.dev.common.ui.theme.AppGray
-import alex.dev.common.ui.theme.AppLightGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AccentTeacher
+import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.contourteacherapp.R
 import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle

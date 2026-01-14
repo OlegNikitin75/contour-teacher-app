@@ -1,125 +1,113 @@
 package alex.dev.contourteacherapp.presentation.feature.auth.sign_in_screen
 
+import alex.dev.contourteacherapp.R
+import alex.dev.contourteacherapp.presentation.ui.componets.buttons.PrimaryButton
+import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
+import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
+import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
+import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
+import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
 fun SignInScreen(
-    onLoginComplete: @Composable () -> Unit,
-    navigateToSignUp: () -> Unit,
-    navigateToBack: () -> Unit,
+    onLoginWithGoogleComplete: () -> Unit,
+    ) {
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = AppLightGray,
+    ) { paddingValues ->
+        ConstraintLayout(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            val (titleRef, imageRef, surfaceRef) = createRefs()
+            AppTitle(
+                modifier = Modifier
+                    .constrainAs(titleRef) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
+                textStyle = AppTypography.H3,
+            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .constrainAs(surfaceRef) {
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
+                color = AppWhite,
+                shape = RoundedCornerShape(
+                    topStart = AppSize.SIZE_MEDIUM,
+                    topEnd = AppSize.SIZE_MEDIUM
+                )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = AppSize.SIZE_MEDIUM,
+                            bottom = AppSize.SIZE_MEDIUM,
+                            start = AppSize.SIZE_NORMAL,
+                            end = AppSize.SIZE_NORMAL
+                        ),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(AppSize.SIZE_MEDIUM)
+                ) {
+                    Text(
+                        text = stringResource(R.string.signin_t),
+                        style = AppTypography.H2,
+                        color = AppBlack,
+                        textAlign = TextAlign.Center
+                    )
+                    PrimaryButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(AppSize.SIZE_EXTRA_LARGE),
+                        onClick = {},
+                        label = stringResource(R.string.signin_b),
+                        containerColor = AppBlack,
+                        contentColor = AppWhite,
+                        iconResId = R.drawable.ic_google_brands_white
+                    )
 
-) {
-//    val email by viewModel.email.collectAsState()
-//    val password by viewModel.password.collectAsState()
-//    var showPassword by remember { mutableStateOf(false) }
-//    val isLoading by viewModel.isLoading.collectAsState()
-//    val viewModel: AuthViewModel = hiltViewModel()
-//
-//    AppBox(
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(horizontal = AppTheme.size.medium)
-//                .padding(bottom = AppTheme.size.screenVerticalPadding),
-//            verticalArrangement = Arrangement.SpaceBetween
-//        ) {
-//            GhostButton(
-//                iconId = R.drawable.ic_arrow_left_lm,
-//                label = R.string.button_back_text,
-//                onClick = onBackClick,
-//            )
-//            Column(
-//                modifier = Modifier
-//                    .padding(vertical = AppTheme.size.screenVerticalPadding)
-//                    .fillMaxWidth(),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                Icon(
-//                    modifier = Modifier
-//                        .padding(bottom = AppTheme.size.medium)
-//                        .size(AppTheme.size.screenIconSize),
-//                    painter = painterResource(
-//                        R.drawable.ic_lock_lm
-//                    ),
-//                    tint = AppTheme.colorScheme.primary,
-//                    contentDescription = null
-//                )
-//                Text(
-//                    text = stringResource(R.string.title_login_screen),
-//                    style = AppTheme.typography.title,
-//                    color = AppTheme.colorScheme.onBackgroundSecondary
-//                )
-//            }
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .verticalScroll(rememberScrollState()),
-//                horizontalAlignment = Alignment.CenterHorizontally,
-//                verticalArrangement = Arrangement.SpaceBetween
-//            ) {
-//                Column() {
-//                    AppTextField(
-//                        value = email,
-//                        onValueChange = viewModel::onEmailChanged,
-//                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-//                        label = stringResource(R.string.label_email),
-//                        leadingIconId = R.drawable.ic_mail_lm,
-//                    )
-//                    Spacer(modifier = Modifier.height(AppTheme.size.normal))
-//                    AppTextField(
-//                        value = password,
-//                        onValueChange = viewModel::onPasswordChanged,
-//                        onVisibilityChange = { showPassword = !showPassword },
-//                        showPassword = showPassword,
-//                        passwordVisualTransformation = true,
-//                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-//                        label = stringResource(R.string.label_login_password),
-//                        leadingIconId = R.drawable.ic_lock_lm,
-//                        trailingIconId =
-//                            if (showPassword) {
-//                                R.drawable.ic_password_show_lm
-//                            } else {
-//                                R.drawable.ic_password_hidden_lm
-//                            }
-//                    )
-//                }
-//                Column(
-//                    modifier = Modifier.fillMaxWidth(),
-//                    horizontalAlignment = Alignment.CenterHorizontally
-//                ) {
-//                    PrimaryButton(
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .height(AppTheme.size.buttonHeightLarge),
-//                        label = stringResource(R.string.button_login_text),
-//                        isLoading = isLoading,
-//                        isEnabled = !isLoading,
-//                        onClick = {
-//                            viewModel.signIn(email, password)
-//                            onLoginComplete
-//                        }
-//                    )
-//                    Spacer(modifier = Modifier.height(AppTheme.size.large))
-//                    Row() {
-//                        Text(
-//                            text = stringResource(R.string.other_text_login_screen),
-//                            style = AppTheme.typography.text,
-//                            color = AppTheme.colorScheme.onBackgroundPrimary
-//                        )
-//                        Text(
-//                            text = stringResource(R.string.link_to_register_text),
-//                            color = AppTheme.colorScheme.primary,
-//                            style = AppTheme.typography.label,
-//                            modifier = Modifier
-//                                .padding(start = AppTheme.size.small)
-//                                .clickable {
-//                                    onSignUpClick()
-//                                }
-//                        )
-//                    }
-//                }
-//            }
-//        }
-//    }
+                }
+            }
+            Image(
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .constrainAs(imageRef) {
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(surfaceRef.top)
+                    },
+                painter = painterResource(R.drawable.teacher_image_signin),
+                contentDescription = stringResource(R.string.teacher_image_d),
+            )
+        }
+    }
 }

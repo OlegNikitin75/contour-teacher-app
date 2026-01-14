@@ -7,17 +7,15 @@
 
     <!--    Screen titles-->
     <string name="intro_t">платформа для управления учебным процессом</string>
+    <string name="signin_t">добро пожаловать\nв контур</string>
     <string name="check_role_t">проверим доступ\nк приложению преподавателя</string>
 
     <!--    Button labels-->
-    <string name="signup_b">зарегистрироваться</string>
-    <string name="signin_b">войти</string>
+    <string name="verify_access_b">проверить доступ</string>
+    <string name="signin_b">войти с google</string>
     <string name="check_code_b">проверить код</string>
-    <string name="forget_password_b">не помню пароль</string>
 
     <!--    Screen strings-->
-    <string name="intro_auth_s">уже есть аккаунт?</string>
-    <string name="check_role_bottom_s">код не пришёл? обратитесь к админу</string>
     <string name="check_role_top_s">админ кафедры выдал вам уникальный код для доступа</string>
 
     <!--    Message strings-->

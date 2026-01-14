@@ -1,4 +1,4 @@
-package alex.dev.common.ui.theme
+package alex.dev.contourteacherapp.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

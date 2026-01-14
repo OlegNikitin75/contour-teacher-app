@@ -28,8 +28,8 @@ data class UserProfileResponseDto(
     val firstName: String,
     @SerialName("last_name")
     val lastName: String,
-    @SerialName("patronymic")
-    val patronymic: String?,
+    @SerialName("middle_name")
+    val middleName: String?,
     @SerialName("avatar_url")
     val avatarUrl: String?,
     @SerialName("position")

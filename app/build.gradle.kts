@@ -110,6 +110,9 @@ dependencies {
     implementation(libs.storage.kt)
     implementation(libs.functions.kt)
 
+    implementation(libs.androidx.credentials)
+    implementation(libs.googleid)
+
     // 8. ОБЯЗАТЕЛЬНО: Ktor Client для Android (нужен для Supabase)
     implementation(libs.ktor.client.android)
 

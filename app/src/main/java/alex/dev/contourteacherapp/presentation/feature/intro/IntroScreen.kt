@@ -1,11 +1,11 @@
 package alex.dev.contourteacherapp.presentation.feature.intro
 
 import alex.dev.contourteacherapp.presentation.ui.componets.buttons.PrimaryButton
-import alex.dev.common.ui.theme.AppBlack
-import alex.dev.common.ui.theme.AppGray
-import alex.dev.common.ui.theme.AppLightGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
+import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
-import alex.dev.common.ui.theme.AppWhite
+import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
 import alex.dev.contourteacherapp.R
 import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,7 +38,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 @Composable
 fun IntroScreen(
     onNavigateToCheckRoleScreen: () -> Unit,
-    onNavigateToSignIn: () -> Unit
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -75,6 +75,7 @@ fun IntroScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
+
                         .padding(
                             top = AppSize.SIZE_MEDIUM,
                             bottom = AppSize.SIZE_MEDIUM,
@@ -82,7 +83,7 @@ fun IntroScreen(
                             end = AppSize.SIZE_NORMAL
                         ),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(AppSize.SIZE_MEDIUM)
+                    verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
                         text = stringResource(R.string.intro_t),
@@ -90,31 +91,17 @@ fun IntroScreen(
                         color = AppBlack,
                         textAlign = TextAlign.Center
                     )
+                    Spacer(modifier=Modifier.height(AppSize.SIZE_LARGE))
                     PrimaryButton(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(AppSize.SIZE_EXTRA_LARGE),
                         onClick = onNavigateToCheckRoleScreen,
-                        label = stringResource(R.string.signup_b),
+                        label = stringResource(R.string.verify_access_b),
                         containerColor = AppBlack,
                         contentColor = AppWhite
                     )
-                    Row {
-                        Text(
-                            modifier = Modifier.clickable { onNavigateToSignIn() },
-                            text = stringResource(R.string.intro_auth_s),
-                            color = AppGray,
-                            style = AppTypography.L1
-                        )
-                        Spacer(modifier = Modifier.width(AppSize.SIZE_SMALL))
-                        Text(
-                            modifier = Modifier.clickable { onNavigateToSignIn() },
-                            text = stringResource(R.string.signin_b),
-                            color = AppBlack,
-                            style = AppTypography.L1,
-                            textDecoration = TextDecoration.Underline
-                        )
-                    }
+
                 }
             }
             Image(
@@ -132,3 +119,4 @@ fun IntroScreen(
         }
     }
 }
+

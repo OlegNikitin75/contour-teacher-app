@@ -1,7 +1,7 @@
 package alex.dev.contourteacherapp.presentation.ui.componets.titles
 
-import alex.dev.common.ui.theme.AccentTeacher
-import alex.dev.common.ui.theme.AppBlack
+import alex.dev.contourteacherapp.presentation.ui.theme.AccentTeacher
+import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
 import alex.dev.contourteacherapp.R
 import androidx.compose.foundation.layout.Arrangement

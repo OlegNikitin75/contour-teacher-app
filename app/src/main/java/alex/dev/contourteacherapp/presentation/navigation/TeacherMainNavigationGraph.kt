@@ -21,15 +21,15 @@ fun TeacherMainNavigationGraph(startDestination: TeacherScreens = TeacherScreens
                 onNavigateToCheckRoleScreen = {
                     navController.navigate(TeacherScreens.ActivationScreen)
                 },
-                onNavigateToSignIn = {
-                    navController.navigate(TeacherScreens.SignInScreen)
-                }
+//                onNavigateToSignIn = {
+//                    navController.navigate(TeacherScreens.SignInScreen)
+//                }
             )
         }
         composable<TeacherScreens.ActivationScreen> {
             ActivationScreen(
                 onVerificationComplete = {
-                    navController.navigate(TeacherScreens.SignUpScreen) {
+                    navController.navigate(TeacherScreens.SignInScreen) {
                         popUpTo<TeacherScreens.ActivationScreen> {
                             inclusive = true
                         }
@@ -60,20 +60,12 @@ fun TeacherMainNavigationGraph(startDestination: TeacherScreens = TeacherScreens
 //        }
         composable<TeacherScreens.SignInScreen> {
             SignInScreen(
-                onLoginComplete = {
+                onLoginWithGoogleComplete = {
                     // При успешном входе удаляем ВСЕ экраны аутентификации
                     navController.navigate(TeacherScreens.HomeGraph) {
                         popUpTo(0) { inclusive = true }
                     }
                 },
-                navigateToSignUp = {
-                    // Просто переход на регистрацию
-                    navController.navigate(TeacherScreens.SignUpScreen)
-                },
-                navigateToBack = {
-                    // Возврат на IntroScreen (или другой предыдущий)
-                    navController.popBackStack()
-                }
             )
         }
 //        composable<TeacherScreens.HomeGraph> {

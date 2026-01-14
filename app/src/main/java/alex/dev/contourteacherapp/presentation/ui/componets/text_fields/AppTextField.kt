@@ -1,10 +1,10 @@
 package alex.dev.contourteacherapp.presentation.ui.componets.text_fields
 
-import alex.dev.common.ui.theme.AppBlack
-import alex.dev.common.ui.theme.AppError
-import alex.dev.common.ui.theme.AppGray
-import alex.dev.common.ui.theme.AppLightGray
-import alex.dev.common.ui.theme.AppSuccess
+import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
+import alex.dev.contourteacherapp.presentation.ui.theme.AppError
+import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppSuccess
 import alex.dev.contourteacherapp.presentation.ui.theme.AppShape
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
