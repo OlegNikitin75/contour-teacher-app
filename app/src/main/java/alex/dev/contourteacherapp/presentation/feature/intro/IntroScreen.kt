@@ -1,26 +1,22 @@
 package alex.dev.contourteacherapp.presentation.feature.intro
 
+import alex.dev.contourteacherapp.R
 import alex.dev.contourteacherapp.presentation.ui.componets.buttons.PrimaryButton
+import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
 import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
-import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
 import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
-import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
-import alex.dev.contourteacherapp.R
-import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
+import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -32,7 +28,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
@@ -75,7 +70,6 @@ fun IntroScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-
                         .padding(
                             top = AppSize.SIZE_MEDIUM,
                             bottom = AppSize.SIZE_MEDIUM,
@@ -91,7 +85,7 @@ fun IntroScreen(
                         color = AppBlack,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier=Modifier.height(AppSize.SIZE_LARGE))
+                    Spacer(modifier = Modifier.height(AppSize.SIZE_LARGE))
                     PrimaryButton(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -101,7 +95,6 @@ fun IntroScreen(
                         containerColor = AppBlack,
                         contentColor = AppWhite
                     )
-
                 }
             }
             Image(

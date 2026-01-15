@@ -138,7 +138,7 @@ fun InviteCodeInputField(
                 else -> {}
             }
         }
-        Spacer(modifier = Modifier.height(AppSize.SIZE_MEDIUM))
+        Spacer(modifier = Modifier.height(AppSize.SIZE_NORMAL))
         PrimaryButton(
             label = if (isLoading) "" else stringResource(R.string.check_code_b),
             onClick = { onVerifyCode(code.text.toString()) },

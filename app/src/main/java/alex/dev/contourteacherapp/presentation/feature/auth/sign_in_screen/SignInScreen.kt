@@ -9,16 +9,21 @@ import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
 import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,39 +31,51 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.constraintlayout.compose.ConstraintLayout
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScreen(
     onLoginWithGoogleComplete: () -> Unit,
-    ) {
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = AppLightGray,
-    ) { paddingValues ->
-        ConstraintLayout(
+        topBar = {
+            TopAppBar(
+                title = {
+                    AppTitle(
+                        textStyle = AppTypography.H3,
+                    )
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = AppLightGray
+                )
+            )
+        }
+    )
+    { paddingValues ->
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            val (titleRef, imageRef, surfaceRef) = createRefs()
-            AppTitle(
+            Box(
                 modifier = Modifier
-                    .constrainAs(titleRef) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                textStyle = AppTypography.H3,
-            )
+                    .background(AppLightGray)
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+                Image(
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    painter = painterResource(R.drawable.teacher_image_signin),
+                    contentDescription = stringResource(R.string.teacher_image_d),
+                )
+            }
             Surface(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .constrainAs(surfaceRef) {
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
+                    .fillMaxWidth(),
                 color = AppWhite,
                 shape = RoundedCornerShape(
                     topStart = AppSize.SIZE_MEDIUM,
@@ -93,21 +110,8 @@ fun SignInScreen(
                         contentColor = AppWhite,
                         iconResId = R.drawable.ic_google_brands_white
                     )
-
                 }
             }
-            Image(
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .constrainAs(imageRef) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(surfaceRef.top)
-                    },
-                painter = painterResource(R.drawable.teacher_image_signin),
-                contentDescription = stringResource(R.string.teacher_image_d),
-            )
         }
     }
 }

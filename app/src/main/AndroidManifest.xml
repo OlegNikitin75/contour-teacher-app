@@ -24,7 +24,6 @@
         </activity>
         <activity
             android:name=".TeacherMainActivity"
-            android:windowSoftInputMode="adjustResize"
             android:exported="true"
             android:theme="@style/Theme.ContourTeacherApp" />
     </application>

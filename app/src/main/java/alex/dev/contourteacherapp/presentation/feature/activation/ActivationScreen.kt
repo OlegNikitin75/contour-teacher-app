@@ -1,26 +1,29 @@
 package alex.dev.contourteacherapp.presentation.feature.activation
 
-import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
-import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
-import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
-import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
 import alex.dev.contourteacherapp.R
 import alex.dev.contourteacherapp.presentation.ui.componets.layout.InviteCodeInputField
 import alex.dev.contourteacherapp.presentation.ui.componets.titles.AppTitle
+import alex.dev.contourteacherapp.presentation.ui.theme.AppBlack
+import alex.dev.contourteacherapp.presentation.ui.theme.AppGray
+import alex.dev.contourteacherapp.presentation.ui.theme.AppLightGray
 import alex.dev.contourteacherapp.presentation.ui.theme.AppSize
 import alex.dev.contourteacherapp.presentation.ui.theme.AppTypography
-import androidx.compose.foundation.layout.Arrangement
+import alex.dev.contourteacherapp.presentation.ui.theme.AppWhite
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -30,12 +33,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import kotlinx.coroutines.delay
 
+@SuppressLint("ConfigurationScreenWidthHeight")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ActivationScreen(
     viewModel: ActivationViewModel = hiltViewModel(),
@@ -43,6 +49,7 @@ fun ActivationScreen(
 ) {
     val state by viewModel.state.collectAsState()
     var enteredCode by remember { mutableStateOf("") }
+    val configuration = LocalConfiguration.current
 
     LaunchedEffect(state) {
         if (state is ActivationState.Success) {
@@ -51,26 +58,30 @@ fun ActivationScreen(
         }
     }
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize(),
         containerColor = AppLightGray,
+        topBar = {
+            TopAppBar(
+                title = {
+                    AppTitle(
+                        textStyle = AppTypography.H2,
+                    )
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = AppLightGray
+                )
+            )
+        },
     ) { paddingValues ->
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(paddingValues)
         ) {
-            AppTitle(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 56.dp),
-                textStyle = AppTypography.H2,
-            )
+
             Surface(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxSize()
+                    .height(configuration.screenHeightDp.dp * 0.5f),
                 color = AppWhite,
                 shape = RoundedCornerShape(
                     topStart = AppSize.SIZE_MEDIUM,
@@ -85,10 +96,8 @@ fun ActivationScreen(
                             bottom = AppSize.SIZE_MEDIUM,
                             start = AppSize.SIZE_NORMAL,
                             end = AppSize.SIZE_NORMAL
-                        )
-                        .imePadding(),
+                        ),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
                         text = stringResource(R.string.check_role_t),
