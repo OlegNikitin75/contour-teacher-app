@@ -9,14 +9,17 @@
     <string name="intro_t">платформа для управления учебным процессом</string>
     <string name="signin_t">добро пожаловать\nв контур</string>
     <string name="check_role_t">проверим доступ\nк приложению преподавателя</string>
+    <string name="success_sign_in_t">вход выполнен успешно!</string>
 
     <!--    Button labels-->
     <string name="verify_access_b">проверить доступ</string>
     <string name="signin_b">войти с google</string>
     <string name="check_code_b">проверить код</string>
+    <string name="go_b">перейти</string>
 
     <!--    Screen strings-->
     <string name="check_role_top_s">админ кафедры выдал вам уникальный код для доступа</string>
+    <string name="success_sign_in_s">давайте познакомимся поближе.\n укажите фио, должность и кафедру</string>
 
     <!--    Message strings-->
     <string name="invite_code_success_m">код подтверждён. приятного использования!</string>
@@ -26,6 +29,15 @@
     <string name="unknown_error_m">неизвестная ошибка</string>
     <string name="invalid_invite_code_error_m">неверный код доступа</string>
     <string name="failed_process_verify_error_m">ошибка верификации кода доступа</string>
+    <string name="cancelled_error_m">"пользователь отменил вход"</string>
+    <string name="server_not_found_m">не найдено</string>
+    <string name="server_internal_error_m">внутренняя ошибка сервера</string>
+    <string name="server_service_unavailable_m">сервис недоступен</string>
+    <string name="invalid_credential_error_m">неверные учетные данные для аутентификации</string>
+    <string name="network_auth_error_m">ошибка сети во время аутентификации</string>
+    <string name="no_google_accounts_error_m">на устройстве отсутствуют учетные записи Google</string>
+    <string name="invalid_format_token_error_m">неверный формат токена</string>
+    <string name="failed_google_credential_error_m">не удалось получить учетные данные Google</string>
 
 
     <!--    Image, icon descriptions-->
@@ -38,13 +50,7 @@
     <string name="confirm_password_l_tf">повторите пароль</string>
 
     <!--    Text field placeholders-->
-    <string name="email_p_tf">hello@contour.com</string>
-    <string name="password_p_tf">минимум 6 символов</string>
-    <string name="confirm_password_p_tf">******</string>
-    <string name="server_not_found_m">не найдено</string>
-    <string name="server_internal_error_m">внутренняя ошибка сервера</string>
-    <string name="server_service_unavailable_m">сервис недоступен</string>
-    <string name="server_maintenance_m">идут технические работы</string>
+
 
 
 </resources>

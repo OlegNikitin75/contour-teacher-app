@@ -4,6 +4,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class TeacherScreens {
+
+    @Serializable
+    data object Loading : TeacherScreens()
+
     @Serializable
     data object IntroScreen : TeacherScreens()
 
@@ -14,7 +18,11 @@ sealed class TeacherScreens {
     data object SignInScreen : TeacherScreens()
 
     @Serializable
-    data object SignUpScreen : TeacherScreens()
+    data object SuccessSignInScreen : TeacherScreens()
+
+    @Serializable
+    data object SuccessCompleteProfileScreen : TeacherScreens()
+
 
     @Serializable
     data object CompleteProfileScreen : TeacherScreens()

@@ -45,6 +45,11 @@ android {
             "SUPABASE_URL",
             "\"${localProperties.getProperty("SUPABASE_URL", "")}\""
         )
+        buildConfigField(
+            "String",
+            "WEB_CLIENT_ID",
+            "\"${localProperties.getProperty("WEB_CLIENT_ID", "")}\""
+        )
     }
 
     buildTypes {

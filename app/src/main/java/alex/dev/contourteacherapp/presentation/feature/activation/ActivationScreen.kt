@@ -51,6 +51,7 @@ fun ActivationScreen(
     var enteredCode by remember { mutableStateOf("") }
     val configuration = LocalConfiguration.current
 
+
     LaunchedEffect(state) {
         if (state is ActivationState.Success) {
             delay(500)
@@ -71,13 +72,12 @@ fun ActivationScreen(
                 )
             )
         },
-    ) { paddingValues ->
+        ) { paddingValues ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-
             Surface(
                 modifier = Modifier
                     .fillMaxSize()
@@ -135,4 +135,6 @@ fun ActivationScreen(
         }
     }
 }
+
+
 

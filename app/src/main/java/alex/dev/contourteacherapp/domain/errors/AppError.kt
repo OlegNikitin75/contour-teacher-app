@@ -33,6 +33,7 @@ sealed class AppError(
         )
     }
 
+
     class Server(
         @StringRes userMessageResId: Int,
         message: String,
@@ -52,6 +53,15 @@ sealed class AppError(
                 }
         }
     }
+    class UserCancelled(
+        @StringRes userMessageResId: Int,
+        message: String,
+        cause: Throwable? = null
+    ) : AppError(userMessageResId, message, cause)
+
+
+
+
 
     // Другие категории ошибок
 }

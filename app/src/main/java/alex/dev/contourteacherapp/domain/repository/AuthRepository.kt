@@ -1,11 +1,8 @@
 package alex.dev.contourteacherapp.domain.repository
 
-import io.github.jan.supabase.auth.user.UserInfo
+import android.content.Context
 
 interface AuthRepository {
-    suspend fun signUp(email: String, password: String): Boolean
-    suspend fun signIn(email: String, password: String): Result<UserInfo>
+    suspend fun signInWithGoogle(context: Context): Result<Unit>
     suspend fun signOut(): Result<Unit>
-    suspend fun getCurrentUser(): Result<UserInfo?>
-    suspend fun isUserLoggedIn(): Boolean
 }

@@ -4,4 +4,17 @@
     <style name="Theme.ContourTeacherApp" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:screenOrientation">portrait</item>
     </style>
+    <style name="Theme.ContourTeacherApp.Splash" parent="Theme.SplashScreen">
+        <!-- Фон сплеша -->
+        <item name="windowSplashScreenBackground">@color/app_light_gray</item>
+
+        <!-- Иконка сплеша (желательно векторная или адаптивная) -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_image</item>
+
+        <!-- Длительность анимации иконки -->
+        <item name="windowSplashScreenAnimationDuration">600</item>
+
+        <!-- После сплеша переходим на основную тему -->
+        <item name="postSplashScreenTheme">@style/Theme.ContourTeacherApp</item>
+    </style>
 </resources>

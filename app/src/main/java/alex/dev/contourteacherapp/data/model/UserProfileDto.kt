@@ -1,9 +1,9 @@
 package alex.dev.contourteacherapp.data.model
 
+import alex.dev.contourteacherapp.domain.model.UserProfile
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.UUID
 
 @Serializable
 data class UserProfileRequestDto(
@@ -23,11 +23,11 @@ data class UserProfileRequestDto(
 data class UserProfileResponseDto(
     @SerialName("id")
     @Contextual
-    val id: UUID,
+    val id: String,
     @SerialName("first_name")
-    val firstName: String,
+    val firstName: String?,
     @SerialName("last_name")
-    val lastName: String,
+    val lastName: String?,
     @SerialName("middle_name")
     val middleName: String?,
     @SerialName("avatar_url")
@@ -42,4 +42,17 @@ data class UserProfileResponseDto(
     val createdAt: String?,
     @SerialName("updated_at")
     val updatedAt: String?
-)
+) {
+    fun toDomain(): UserProfile = UserProfile(
+        id = id.toString(),
+        firstName = firstName,
+        lastName = lastName,
+        middleName = middleName,
+        avatarUrl = avatarUrl,
+        position = position,
+        department = department,
+        role = role,
+        createdAt = createdAt,
+        updatedAt = updatedAt
+    )
+}
